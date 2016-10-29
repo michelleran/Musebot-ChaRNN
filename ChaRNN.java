@@ -91,37 +91,35 @@ public class ChaRNN {
 		JsonParser parser = new JsonParser();
 
 		try {
-            Gson gson = new Gson();
-            JsonElement element = parser.parse(new FileReader(path));
-            Map<String, Object> obj = gson.fromJson(element, Map.class);
-            inputPath = obj.get("inputPath").toString();
-            vocabSize = (int) Double.parseDouble(obj.get("vocabSize").toString());
-            hiddenSize = (int) Double.parseDouble(obj.get("hiddenSize").toString());
-            seqLength = (int) Double.parseDouble(obj.get("seqLength").toString());
-            learningRate = Double.parseDouble(obj.get("learningRate").toString());
+            		Gson gson = new Gson();
+            		JsonElement element = parser.parse(new FileReader(path));
+            		Map<String, Object> obj = gson.fromJson(element, Map.class);
+            		inputPath = obj.get("inputPath").toString();
+           		vocabSize = (int) Double.parseDouble(obj.get("vocabSize").toString());
+            		hiddenSize = (int) Double.parseDouble(obj.get("hiddenSize").toString());
+            		seqLength = (int) Double.parseDouble(obj.get("seqLength").toString());
+            		learningRate = Double.parseDouble(obj.get("learningRate").toString());
             
-            chars = gson.fromJson(obj.get("chars").toString(), ArrayList.class);
+            		chars = gson.fromJson(obj.get("chars").toString(), ArrayList.class);
             
-            Wxh = gson.fromJson(obj.get("Wxh").toString(), double[][].class);
-            Whh = gson.fromJson(obj.get("Whh").toString(), double[][].class);
-            Why = gson.fromJson(obj.get("Why").toString(), double[][].class);
-            bh = gson.fromJson(obj.get("bh").toString(), double[].class);
-            by = gson.fromJson(obj.get("by").toString(), double[].class);
+            		Wxh = gson.fromJson(obj.get("Wxh").toString(), double[][].class);
+            		Whh = gson.fromJson(obj.get("Whh").toString(), double[][].class);
+            		Why = gson.fromJson(obj.get("Why").toString(), double[][].class);
+            		bh = gson.fromJson(obj.get("bh").toString(), double[].class);
+            		by = gson.fromJson(obj.get("by").toString(), double[].class);
             
-            hprev = gson.fromJson(obj.get("hprev").toString(), double[].class);
+            		hprev = gson.fromJson(obj.get("hprev").toString(), double[].class);
             
-            System.out.println(Wxh[0][0]);
+            		prepareInput();
             
-            prepareInput();
-            
-            mWxh = new double[Wxh.length][Wxh[0].length];
+            		mWxh = new double[Wxh.length][Wxh[0].length];
 			mWhh = new double[Whh.length][Whh[0].length];
 			mWhy = new double[Why.length][Why[0].length];
 			mbh = new double[bh.length];
 			mby = new double[by.length];
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        	} catch (IOException e) {
+            		e.printStackTrace();
+        	}
 	}
 	
 	public void prepareInput() throws IOException {
