@@ -1,5 +1,3 @@
-package com.mran.ChaRNN;
-
 public class Loss {
 	public double loss;
 	public double[][] dWxh, dWhh, dWhy;
